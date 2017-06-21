@@ -7,6 +7,7 @@
  */
 
 namespace backend\controllers;
+use backend\models\Deployinfo;
 use Yii;
 use yii\web\Controller;
 
@@ -15,6 +16,9 @@ class DeployinfoController extends Controller
 
     public function actionIndex()
     {
-        echo 11;exit;
+        $data = [
+            'model' => new Deployinfo()
+        ];
+        return $this->render('index' ,$data);
     }
 }

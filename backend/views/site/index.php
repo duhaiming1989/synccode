@@ -20,7 +20,7 @@ $dataProvider->setSort(false);
                 'format' => 'raw',
                 'value' => function(){
                     return
-                        Html::a('<span class="btn btn-primary">部署</span>', '/Deployinfo/index', ['title' => '部署'] );
+                        Html::a('<span class="btn btn-primary">部署</span>', '/deployinfo/index', ['title' => '部署'] );
                 },
                 'headerOptions' => ['width' => '80'],
             ]

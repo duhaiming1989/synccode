@@ -66,8 +66,6 @@ class SiteController extends Controller
         $data['dataProvider'] = new ActiveDataProvider([
             'query' => VersionList::getVersionList($query)
         ]);
-
-
         return $this->render('index' ,$data);
     }
 
