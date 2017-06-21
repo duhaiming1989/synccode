@@ -1,7 +1,9 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\VersionList;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -60,7 +62,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = ['status' => 0];
+        $data['dataProvider'] = new ActiveDataProvider([
+            'query' => VersionList::getVersionList($query)
+        ]);
+
+
+        return $this->render('index' ,$data);
     }
 
     /**
