@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\ProjectList;
 use backend\models\VersionList;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -17,27 +18,27 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function behaviors ()
     {
         return [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => [ 'login', 'error' ],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => [ 'logout', 'index' ],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => [ '@' ],
                     ],
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => [ 'post' ],
                 ],
             ],
         ];
@@ -46,7 +47,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
+    public function actions ()
     {
         return [
             'error' => [
@@ -60,13 +61,14 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex ()
     {
-        $query = ['status' => 0];
-        $data['dataProvider'] = new ActiveDataProvider([
-            'query' => VersionList::getVersionList($query)
-        ]);
-        return $this->render('index' ,$data);
+        $query = [ 'status' => 0 ];
+        $data['dataProvider'] = new ActiveDataProvider( [
+            'query' => ProjectList::getProjectList()
+        ]
+        );
+        return $this->render( 'index', $data );
     }
 
     /**
@@ -74,19 +76,24 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionLogin()
+    public function actionLogin ()
     {
-        if (!Yii::$app->user->isGuest) {
+        if ( !Yii::$app->user->isGuest )
+        {
             return $this->goHome();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ( $model->load( Yii::$app->request->post() ) && $model->login() )
+        {
             return $this->goBack();
-        } else {
-            return $this->render('login', [
+        }
+        else
+        {
+            return $this->render( 'login', [
                 'model' => $model,
-            ]);
+            ]
+            );
         }
     }
 
@@ -95,7 +102,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionLogout()
+    public function actionLogout ()
     {
         Yii::$app->user->logout();
 

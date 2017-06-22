@@ -7,6 +7,7 @@
  */
 
 namespace backend\models;
+
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -19,6 +20,8 @@ class Deployinfo extends ActiveRecord
     }
 
     public $blackIps;
+
+
 
 
     public function attributeLabels ()

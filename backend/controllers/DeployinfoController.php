@@ -8,7 +8,9 @@
 
 namespace backend\controllers;
 use backend\models\Deployinfo;
+use backend\models\VersionList;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
 class DeployinfoController extends Controller
@@ -19,6 +21,17 @@ class DeployinfoController extends Controller
         $data = [
             'model' => new Deployinfo()
         ];
+
+        $data['dataProvider'] = new ActiveDataProvider([
+            'query' => VersionList::getVersionList(['status' => 0])
+        ]);
+
         return $this->render('index' ,$data);
+    }
+
+
+    public function actionPush()
+    {
+        echo 12121;exit;
     }
 }
