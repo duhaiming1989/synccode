@@ -13,6 +13,22 @@ use yii\db\ActiveRecord;
 
 class ProjectList extends ActiveRecord
 {
+    /**
+     * @inheritdoc
+     */
+    public function rules ()
+    {
+        return [
+            [ [ 'project_name' ], 'required', 'message' => '请填写项目名称' ],
+            [ [ 'project_path' ], 'required', 'message' => '请填写项目路径' ],
+            [ [ 'type' ], 'required', 'message' => '请填写代码库类型' ],
+            [ [ 'type' ], 'integer' ],
+            [ [ 'project_name', 'project_path' ], 'safe' ],
+            [['add_time'] , 'string']
+
+        ];
+    }
+
     public static function tableName ()
     {
         return 'project_list';
@@ -22,6 +38,12 @@ class ProjectList extends ActiveRecord
     {
         return static::find()->where( [] );
     }
+
+    public static function getProjectInfoByid ( $id )
+    {
+        return static::find()->where( ['id' => $id] )->asArray()->one();
+    }
+
 
     public static function getProjectJoinVesionList ( $data = [] )
     {
@@ -34,7 +56,8 @@ class ProjectList extends ActiveRecord
             'id' => 'ID',
             'project_name' => '项目名称',
             'add_time' => '添加时间',
-
+            'project_path' => '项目路径',
+            'type' => '库类型'
         ];
     }
 }

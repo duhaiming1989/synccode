@@ -19,6 +19,10 @@ $dataProvider->setSort( false );
                 'value' => function ( $data )
                 {
                     $vesionInfo = \backend\models\VersionList::getVesionInfoByProjectid( $data->id );
+                    if(empty($vesionInfo['version']))
+                    {
+                        $vesionInfo['version'] = '';
+                    }
                     return $vesionInfo['version'];
                 },
                 'headerOptions' => [ 'width' => '460' ]
@@ -28,6 +32,10 @@ $dataProvider->setSort( false );
                 'value' => function ( $data )
                 {
                     $vesionInfo = \backend\models\VersionList::getVesionInfoByProjectid( $data->id );
+                    if(empty($vesionInfo['add_time']))
+                    {
+                        $vesionInfo['add_time'] = '';
+                    }
                     return $vesionInfo['add_time'];
                 },
                 'headerOptions' => [ 'width' => '160' ]
@@ -37,6 +45,10 @@ $dataProvider->setSort( false );
                 'value' => function ( $data )
                 {
                     $vesionInfo = \backend\models\VersionList::getVesionInfoByProjectid( $data->id );
+                    if(empty($vesionInfo['author']))
+                    {
+                        $vesionInfo['author'] = '';
+                    }
                     return $vesionInfo['author'];
                 },
                 'headerOptions' => [ 'width' => '100' ]

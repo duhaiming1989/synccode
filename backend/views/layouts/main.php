@@ -33,10 +33,12 @@ AppAsset::register($this);
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
+        ]
+    ]
+    );
     $menuItems = [
         ['label' => '首页', 'url' => ['/site/index']],
+        ['label' => '项目列表', 'url' => ['/project/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
