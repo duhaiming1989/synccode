@@ -15,7 +15,6 @@ class BlackipController extends Controller
 {
     public function actionIndex()
     {
-//        print_r($_POST);exit;
         $projectId = Yii::$app->request->get('project_id');
         $projectInfo = ProjectList::getProjectInfoByid($projectId);
         if(empty($projectInfo))
@@ -25,10 +24,16 @@ class BlackipController extends Controller
         $rootPath = Yii::$app->basePath .'/exclude/';
         $filePath = $rootPath . $projectInfo['project_name'] . '.list';
         $Deployinfo = Yii::$app->request->post('Deployinfo');
-        $isTrue = file_put_contents($filePath ,$Deployinfo['blackIps'] );
+        if (!empty($Deployinfo['blackIps']))
+        {
+            $isTrue = file_put_contents($filePath ,$Deployinfo['blackIps'] );
+        }
+        else
+        {
+            $isTrue = true;
+        }
         if($isTrue)
         {
-//            echo "/deployinfo/index?project_id={$projectId}";exit;
             header("Location: /deployinfo/index?project_id={$projectId}");exit;
         }
         else

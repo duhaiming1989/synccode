@@ -24,8 +24,7 @@ class ProjectList extends ActiveRecord
             [ [ 'type' ], 'required', 'message' => '请填写代码库类型' ],
             [ [ 'type' ], 'integer' ],
             [ [ 'project_name', 'project_path' ], 'safe' ],
-            [['add_time'] , 'string']
-
+            [ [ 'add_time', 'rsync_pass', 'ip', 'module_name' ,'user' ], 'string' ]
         ];
     }
 
@@ -41,7 +40,7 @@ class ProjectList extends ActiveRecord
 
     public static function getProjectInfoByid ( $id )
     {
-        return static::find()->where( ['id' => $id] )->asArray()->one();
+        return static::find()->where( [ 'id' => $id ] )->asArray()->one();
     }
 
 
@@ -57,7 +56,11 @@ class ProjectList extends ActiveRecord
             'project_name' => '项目名称',
             'add_time' => '添加时间',
             'project_path' => '项目路径',
-            'type' => '库类型'
+            'type' => '库类型',
+            'rsync_pass' => '同步密码文件',
+            'ip' => '目标IP',
+            'module_name' => '同步模块名',
+            'user' => '用户'
         ];
     }
 }

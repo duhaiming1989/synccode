@@ -18,6 +18,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field( $model, 'type' )->listBox( [ 1 => 'GIT', 2 => 'SVN' ], [ 'prompt' => '请选择', 'size' => 1 ] ) ?>
 
+    <?= $form->field( $model, 'rsync_pass' )->textInput( [ 'maxlength' => true ] ) ?>
+
+    <?= $form->field( $model, 'user' )->textInput( [ 'maxlength' => true ] ) ?>
+
+    <?= $form->field( $model, 'ip' )->textInput( [ 'maxlength' => true ] ) ?>
+
+    <?= $form->field( $model, 'module_name' )->textInput( [ 'maxlength' => true ] ) ?>
+
     <div class="form-group">
         <?= Html::submitButton( $model->isNewRecord ? '添加' : '更新', [ 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary' ] ) ?>
     </div>

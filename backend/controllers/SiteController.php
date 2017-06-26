@@ -65,8 +65,8 @@ class SiteController extends Controller
     {
         $query = [ 'status' => 0 ];
         $data['dataProvider'] = new ActiveDataProvider( [
-            'query' => ProjectList::getProjectList()
-        ]
+                'query' => ProjectList::getProjectList()
+            ]
         );
         return $this->render( 'index', $data );
     }
@@ -91,8 +91,8 @@ class SiteController extends Controller
         else
         {
             return $this->render( 'login', [
-                'model' => $model,
-            ]
+                    'model' => $model,
+                ]
             );
         }
     }

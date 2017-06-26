@@ -28,7 +28,7 @@ class VersionList extends ActiveRecord
      */
     public static function getVersionList ( $query = [] )
     {
-        return static::find()->where( $query )->orderBy('id DESC');
+        return static::find()->where( $query )->orderBy( 'id DESC' );
     }
 
 
@@ -39,7 +39,10 @@ class VersionList extends ActiveRecord
 
     public static function getVesionInfoByProjectid ( $project_id )
     {
-        return static::find()->where( [ 'status' => 0, 'project_id' => $project_id ] )->orderBy( 'id DESC' )->limit( 1 )->asArray()->one();
+        $queryData = [
+            'project_id' => $project_id
+        ];
+        return static::find()->where( $queryData )->orderBy( 'id DESC' )->limit( 1 )->asArray()->one();
     }
 
 
@@ -52,7 +55,8 @@ class VersionList extends ActiveRecord
             'version' => '版本号',
             'add_time' => '提交时间',
             'author' => '提交人',
-//            'project_name' => '11'
+            'up_time' => '同步时间',
+            'rsync_author' => '同步用户'
         ];
     }
 }

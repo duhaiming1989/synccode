@@ -26,7 +26,24 @@ $dataProvider->setSort(false);
             'id',
             'project_name',
             'project_path',
-            'type',
+            [
+                'label' => '库',
+                //'type'
+                'value' => function ($data){
+                    if ($data->type == '1')
+                    {
+                        return 'GIT';
+                    }
+                    else
+                    {
+                        return 'SVN';
+                    }
+                }
+            ],
+            'rsync_pass',
+            'user',
+            'ip',
+            'module_name',
             'add_time',
             ['class' => 'yii\grid\ActionColumn','header' => '操作'],
         ],

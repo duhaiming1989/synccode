@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'project_name',
             'project_path',
             'type',
+            'rsync_pass',
+            'user',
+            'ip',
+            'module_name',
             'add_time',
         ],
     ]) ?>
